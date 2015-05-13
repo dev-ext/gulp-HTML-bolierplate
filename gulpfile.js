@@ -148,7 +148,7 @@ gulp.task('serve', ['styles','modernizr','vendorScripts','mainScripts'], functio
   ]).on('change', reload);
 
   gulp.watch('app/**/*.scss', ['styles']);
-  gulp.watch('app/scripts/**/*.js', ['scripts']);
+  gulp.watch('app/scripts/**/*.js', ['mainScripts']);
 });
 
 gulp.task('clean', function(){
