@@ -1,9 +1,33 @@
-// Base
-@import 'scss/base/variables';
+// Author :
+// Repo :  
+// Version : 0.1
+// SHA-1 : 
 
+
+
+// ------------------------------------
+//			Core 
+// ------------------------------------
+
+// Variables
+@import 'scss/base/variables';
 // Bootstrap
 @import '../bower_components/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss';
+// Mixin
+@import 'scss/mixin/mixins';
+@import 'scss/base/base';
+
+
+// ------------------------------------
+//			Project Structure
+// ------------------------------------
+
+// module
+@import 'scss/module/modules';
+// pages
+@import 'scss/page/pages';
 
 .header {
-	margin-bottom: 50px; display: flex;
+	margin-bottom: 50px;
+	display: flex;
 }
