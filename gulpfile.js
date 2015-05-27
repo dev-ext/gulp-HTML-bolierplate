@@ -34,7 +34,7 @@ var src = {
 
 gulp.task('styles', function () {
   return gulp.src(src.scss)    
-    .pipe(gulpif(dev,$.sourcemaps.init()))
+    .pipe($.sourcemaps.init())
     .pipe($.sass({
       outputStyle: 'nested', // libsass doesn't support expanded yet
       precision: 10,
@@ -44,9 +44,9 @@ gulp.task('styles', function () {
     .pipe($.postcss([
       require('autoprefixer-core')({browsers: ['last 2 version']})
     ]))
-    .pipe(gulpif(dev,$.sourcemaps.write()))
-    .pipe(gulpif(dev,gulp.dest(app+'/')))
-    .pipe(gulpif(production,csso()))
+    .pipe($.sourcemaps.write())
+    .pipe(csso())
+    .pipe(gulpif(dev,gulp.dest(app+'/')))    
     .pipe(gulpif(production,gulp.dest(dist+'/')))
     .pipe(reload({stream: true}));
 });
