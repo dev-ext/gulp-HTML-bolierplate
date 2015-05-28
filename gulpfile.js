@@ -45,7 +45,7 @@ gulp.task('styles', function () {
       require('autoprefixer-core')({browsers: ['last 2 version']})
     ]))
     .pipe($.sourcemaps.write())
-    .pipe(csso())
+    .pipe(gulpif(production,csso()))
     .pipe(gulpif(dev,gulp.dest(app+'/')))    
     .pipe(gulpif(production,gulp.dest(dist+'/')))
     .pipe(reload({stream: true}));
