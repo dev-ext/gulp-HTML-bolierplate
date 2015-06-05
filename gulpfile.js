@@ -75,7 +75,7 @@ gulp.task('mainScripts', function(){
   return gulp.src(src.scripts.main)
     .pipe(concat('main.js'))    
     .pipe(gulpif(dev,gulp.dest(app+'/js/')))
-    .pipe(gulpif(production,gulp.dest(app+'/js/')))
+    .pipe(gulpif(production,gulp.dest(dist+'/js/')))
     .pipe(rename('main.min.js'))
     .pipe(uglify())
     .pipe(gulpif(dev,gulp.dest(app+'/js/')))
