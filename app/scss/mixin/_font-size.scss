@@ -1,0 +1,9 @@
+@mixin font-size($size) {
+	font-size: $size;
+	@include respond-to('md') {
+	font-size: $size+5;
+	}
+	@include respond-to('lg') {
+	font-size: $size+10;
+	}
+}

@@ -1,0 +1,32 @@
+// Media query Brekpoints
+$breakpoints: (
+  'xm' : $xs-max, // 479px
+	'xs' : $screen-xs, // 480px
+	'sm' : $screen-sm, // 768px
+	'md' : $screen-md, // 992px
+	'lg' : $screen-lg, // 1200px
+  'xlg' : $screen-xlg // 1500px
+	);
+@mixin respond-to($breakpoint) {
+  // Retrieves the value from the key
+  $value: map-get($breakpoints, $breakpoint);
+
+  @if ($value == $xs-max)  {
+    // Prints a media query based on the value
+    @media (max-width: $value) {
+      @content;
+    }
+  }
+  @else if $value != null {
+    // Prints a media query based on the value
+    @media (min-width: $value) {
+      @content;
+    }
+  }
+
+  // If the key doesn't exist in the map
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+    + "Please make sure it is defined in `$breakpoints` map.";
+  }
+}
