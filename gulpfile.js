@@ -46,13 +46,11 @@ gulp.task('styles', function () {
     ]))
     .pipe($.sourcemaps.write())
     .pipe(gulpif(dev,gulp.dest(app+'/')))
-    .pipe(gulpif(production,gulp.dest(dist+'/')))    
-    .pipe(gulpif(production,csso()))    
-    .pipe(rename('style.min.css'))
-    .pipe(gulpif(dev,gulp.dest(app+'/')))
     .pipe(gulpif(production,gulp.dest(dist+'/')))
-
-    .pipe(reload({stream: true}));
+    .pipe(reload({stream: true}))   
+    .pipe(gulpif(production,csso()))    
+    .pipe(gulpif(production,rename('style.min.css')))
+    .pipe(gulpif(production,gulp.dest(dist+'/'))); 
 });
 
 gulp.task('images', function () {
