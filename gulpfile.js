@@ -89,7 +89,7 @@ gulp.task('vendorScripts', function(){
   return gulp.src(src.scripts.vendor)
     .pipe(concat('vendor.js'))    
     .pipe(gulpif(dev,gulp.dest(app+'/js/vendor/')))
-    .pipe(gulpif(production,gulp.dest(app+'/js/vendor/')))
+    .pipe(gulpif(production,gulp.dest(dist+'/js/vendor/')))
     .pipe(rename('vendor.min.js'))
     .pipe(uglify())
     .pipe(gulpif(dev,gulp.dest(app+'/js/vendor/')))
