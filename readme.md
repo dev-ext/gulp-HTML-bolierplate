@@ -12,3 +12,4 @@ Install Bower: `npm install --global bower`
  1. Run `gulp clean` for clean project dir
  2. Run `gulp build --production`. This will generate production version into 'dist' folder with optimized version.
  3.  After gulp build complete `gulp htmlCopy` . This will copy html without optimized.
+ 4.  After build `gulp live-serve` This will serve build version.
