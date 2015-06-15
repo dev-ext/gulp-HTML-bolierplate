@@ -153,6 +153,18 @@ gulp.task('serve', ['styles','modernizr','vendorScripts','mainScripts'], functio
   gulp.watch(app+'/**/*.scss', ['styles']);
   gulp.watch(app+'/scripts/**/*.js', ['mainScripts']);
 });
+// Live Serve Added After build
+gulp.task('live-serve', function () {
+  browserSync({
+    notify: false,
+    port: 9000,
+     server: {
+      baseDir: [dist+'/'],
+    },
+    browser: ["google chrome"],   
+  });
+
+});
 
 gulp.task('clean', function(){
   del([
