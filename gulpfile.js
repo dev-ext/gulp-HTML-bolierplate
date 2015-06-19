@@ -22,7 +22,8 @@ var move = !!(argv.move);
 var app = 'app';
 var dist = 'dist';
 var src = {
-  scss : app+'/style.scss',  
+  scss : [app+'/style.scss'],
+  vendorStyle:[app+'/vendor.scss'],  
   scripts:{
   modernizr:'bower_components/modernizr/modernizr.js',
   vendor:['bower_components/jquery/dist/jquery.js',
@@ -32,6 +33,7 @@ var src = {
   }
 };
 
+// Style
 gulp.task('styles', function () {
   return gulp.src(src.scss)    
     .pipe($.sourcemaps.init())
@@ -50,6 +52,28 @@ gulp.task('styles', function () {
     .pipe(reload({stream: true}))   
     .pipe(gulpif(production,csso()))    
     .pipe(gulpif(production,rename('style.min.css')))
+    .pipe(gulpif(production,gulp.dest(dist+'/'))); 
+});
+
+// Vendor Style
+gulp.task('vendorStyles', function () {
+  return gulp.src(src.vendorStyle)    
+    .pipe($.sourcemaps.init())
+    .pipe($.sass({
+      outputStyle: 'nested', // libsass doesn't support expanded yet
+      precision: 10,
+      includePaths: ['.'],
+      onError: console.error.bind(console, 'Sass error:')
+    }))
+    .pipe($.postcss([
+      require('autoprefixer-core')({browsers: ['last 2 version']})
+    ]))
+    .pipe($.sourcemaps.write())
+    .pipe(gulpif(dev,gulp.dest(app+'/')))
+    .pipe(gulpif(production,gulp.dest(dist+'/')))
+    .pipe(reload({stream: true}))   
+    .pipe(gulpif(production,csso()))    
+    .pipe(gulpif(production,rename('vendor.min.css')))
     .pipe(gulpif(production,gulp.dest(dist+'/'))); 
 });
 
@@ -129,8 +153,8 @@ gulp.task('extras', function () {
 });
 
 
-
-gulp.task('serve', ['styles','modernizr','vendorScripts','mainScripts'], function () {
+// gulp serve
+gulp.task('serve', ['styles','vendorStyles','modernizr','vendorScripts','mainScripts'], function () {
   browserSync({
     notify: false,
     port: 9000,
@@ -148,8 +172,8 @@ gulp.task('serve', ['styles','modernizr','vendorScripts','mainScripts'], functio
     app+'/*.html',
     app+'/scripts/**/*.js',
     app+'/images/**/*',
+    app+'/**/*.css',
   ]).on('change', reload);
-
   gulp.watch(app+'/**/*.scss', ['styles']);
   gulp.watch(app+'/scripts/**/*.js', ['mainScripts']);
 });
@@ -166,15 +190,20 @@ gulp.task('live-serve', function () {
 
 });
 
+// Gulp Clean
 gulp.task('clean', function(){
   del([
     dist+'/',
     app+'/js',
-    app+'/style.css'
+    app+'/style.css',
+    app+'/vendor.css'
     ])
 });
 
-gulp.task('build',['modernizr','vendorScripts','mainScripts','styles','images','extras','htmlCopy'],function(){
+// Gulp Create package
+
+
+gulp.task('build',['modernizr','vendorScripts','mainScripts','styles','vendorStyles','images','extras','htmlCopy'],function(){
   return gulp.src(dist+'/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
