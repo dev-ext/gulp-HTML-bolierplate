@@ -99,6 +99,8 @@ gulp.task('lint', function() {
 // Main Js
 gulp.task('mainScripts', function(){
   return gulp.src(src.scripts.main)
+    .pipe(jshint())
+    .pipe(jshint.reporter("jshint-stylish"))
     .pipe(concat('main.js'))    
     .pipe(gulpif(dev,gulp.dest(app+'/js/')))
     .pipe(gulpif(production,gulp.dest(dist+'/js/')))
