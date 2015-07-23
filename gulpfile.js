@@ -35,14 +35,14 @@ var src = {
 
 // Style
 gulp.task('styles', function () {
-  return gulp.src(src.scss)    
+  gulp.src(src.scss)    
     .pipe($.sourcemaps.init())
     .pipe($.sass({
       outputStyle: 'nested', // libsass doesn't support expanded yet
       precision: 10,
-      includePaths: ['.'],
-      onError: console.error.bind(console, 'Sass error:')
+      includePaths: ['.'],      
     }))
+    .on('error',console.log.bind(console, 'Sass error:')) //Error handling and 
     .pipe($.postcss([
       require('autoprefixer-core')({browsers: ['last 2 version']})
     ]))
@@ -57,14 +57,14 @@ gulp.task('styles', function () {
 
 // Vendor Style
 gulp.task('vendorStyles', function () {
-  return gulp.src(src.vendorStyle)    
+  gulp.src(src.vendorStyle)    
     .pipe($.sourcemaps.init())
     .pipe($.sass({
       outputStyle: 'nested', // libsass doesn't support expanded yet
       precision: 10,
-      includePaths: ['.'],
-      onError: console.error.bind(console, 'Sass error:')
+      includePaths: ['.'],     
     }))
+    .on('error',console.log.bind(console, 'Sass error:')) //Error handling and 
     .pipe($.postcss([
       require('autoprefixer-core')({browsers: ['last 2 version']})
     ]))
@@ -172,9 +172,8 @@ gulp.task('serve', ['styles','vendorStyles','modernizr','vendorScripts','mainScr
     app+'/*.html',
     app+'/scripts/**/*.js',
     app+'/images/**/*',
-    app+'/**/*.css',
   ]).on('change', reload);
-  gulp.watch(app+'/**/*.scss', ['styles']);
+  gulp.watch(app+'/**/*.scss', ['styles','vendorStyles']);
   gulp.watch(app+'/scripts/**/*.js', ['mainScripts']);
 });
 // Live Serve Added After build

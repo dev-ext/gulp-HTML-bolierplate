@@ -8,7 +8,9 @@ test/
 
 ## App Temp File 
 app/style.css
+app/vendor.css
 app/js/
+
 
 # Windows image file caches
 Thumbs.db
@@ -32,3 +34,4 @@ $RECYCLE.BIN/
 
 # Mac
 *.DS_Store
+
