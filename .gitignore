@@ -10,7 +10,7 @@ test/
 app/style.css
 app/vendor.css
 app/js/
-
+main/
 
 # Windows image file caches
 Thumbs.db
