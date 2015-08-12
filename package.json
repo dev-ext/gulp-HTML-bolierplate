@@ -27,7 +27,11 @@
     "jshint-stylish": "^1.0.0",
     "main-bower-files": "^2.5.0",
     "opn": "^1.0.0",
+    "require-dir": "^0.3.0",
     "wiredep": "^2.0.0",
     "yargs": "^3.8.0"
+  },
+  "dependencies": {
+    "gulp-load": "^0.1.1"
   }
 }
