@@ -3,6 +3,7 @@ var gulp = require('gulp');
 var runSequence = require('run-sequence');
 var rename = require('gulp-rename');
 var del = require('del');
+var zip = require('gulp-zip');
 var package = 'main';
 var app = 'app';
 var server = 'server';
@@ -12,7 +13,8 @@ var html = 'html';
 
 gulp.task('cp:clean', function(){
   del([
-    package
+    package,
+    dist
     ])
 });
 
@@ -77,6 +79,14 @@ gulp.task('cp:stack:clean', function(){
 gulp.task('cp:client:dist',function(){
  return gulp.src([dist+'/**/*.*'])
  .pipe(gulp.dest(package+'/'+html+'/'));
+});
+
+// create zip
+gulp.task('cp:zip', function () {
+    return gulp.src(['main/**/*.*',
+        '!main/server/**/*.*'])
+        .pipe(zip('main.zip'))
+        .pipe(gulp.dest(''));
 });
 
 gulp.task('cp', function() {
