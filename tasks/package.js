@@ -66,6 +66,7 @@ gulp.task('cp:stack:dist',function(){
     '!bower_components/**/*.*',
     '!node_modules/**/*.*',
     '!'+config.app+'/images/**/*.*',
+    '!'+config.app+'/image-placeholders/**/*.*',
     '!tasks/package.js',       
     '!'+config.package+'/**/*.*',
     '!'+config.dist+'/**/*.*',
@@ -76,16 +77,24 @@ gulp.task('cp:stack:dist',function(){
 
 // Create HTMl Dist
 gulp.task('cp:client:dist',function(){
- return gulp.src([config.dist+'/**/*.*'])
+ return gulp.src([
+        config.dist+'/**/*.*',
+        '!'+config.dist+'/images/**/*.*'
+        ])
  .pipe(gulp.dest(config.package+'/'+config.client+'/'));
 });
 
-// remove unwanted file distribution
-gulp.task('cp:utd', function(){
-  del([
-    config.package+'/'+config.stack+'/tasks/package.js',
-    ])
+// Plceholders
+gulp.task('cp:client:img', function(){
+   return gulp.src([config.app+'/image-placeholders/**/*.*'])
+   .pipe(gulp.dest(config.package+'/'+config.client+'/images/'));
 });
+gulp.task('cp:stack:img', function(){
+   return gulp.src([config.app+'/image-placeholders/**/*.*'])
+   .pipe(gulp.dest(config.package+'/'+config.stack+'/'+config.app+'/images/'));
+});
+
+
 
 gulp.task('cp', function() {
   runSequence(
@@ -97,9 +106,11 @@ gulp.task('cp', function() {
             'cp:server:clean',
             //developer stack distribution
             ['cp:stack:dist'],
+            'cp:stack:img',
             // build file distribution 
             ['htmlcopy'],
             ['cp:client:dist'],
+            'cp:client:img',
             // create Zip
             'cp:zip'
             );
