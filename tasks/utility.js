@@ -8,6 +8,7 @@ gulp.task('clean', function(){
     config.dist+'/',
     config.app+'/js',
     config.app+'/style.css',
-    config.app+'/vendor.css'
+    config.app+'/vendor.css',
+    config.package+'.zip'
     ])
 });

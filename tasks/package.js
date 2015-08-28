@@ -65,7 +65,8 @@ gulp.task('cp:stack:dist',function(){
  return gulp.src(['**/*.*',
     '!bower_components/**/*.*',
     '!node_modules/**/*.*',
-    '!'+config.app+'/images/**/*.*',    
+    '!'+config.app+'/images/**/*.*',
+    '!tasks/package.js',       
     '!'+config.package+'/**/*.*',
     '!'+config.dist+'/**/*.*',
     '!'+config.package+'.zip',
@@ -77,6 +78,13 @@ gulp.task('cp:stack:dist',function(){
 gulp.task('cp:client:dist',function(){
  return gulp.src([config.dist+'/**/*.*'])
  .pipe(gulp.dest(config.package+'/'+config.client+'/'));
+});
+
+// remove unwanted file distribution
+gulp.task('cp:utd', function(){
+  del([
+    config.package+'/'+config.stack+'/tasks/package.js',
+    ])
 });
 
 gulp.task('cp', function() {
