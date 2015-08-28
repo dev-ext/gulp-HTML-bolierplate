@@ -1,7 +1,7 @@
 {
     "dist": "dist",
     "app": "app",
-    "package": "package",
+    "package": "main",
     "server": "server",
     "stack": "developer-task",
     "headjs": "bower_components/modernizr/modernizr.js",
@@ -9,5 +9,7 @@
         "bower_components/jquery/dist/jquery.js",
         "bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"
     ],
-    "mainjs": "/scripts/main.js"
+    "mainjs": "/scripts/main.js",
+    "styles_scss":"app/style.scss",
+    "vendor_scss":"app/vendor.scss"
 }

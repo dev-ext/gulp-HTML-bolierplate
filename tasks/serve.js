@@ -3,10 +3,8 @@ var gulp = require('gulp');
 var browserSync = require('browser-sync');
 var $ = require('gulp-load-plugins')();
 var reload = browserSync.reload;
+var config = require('./config.json');
 
-// variables
-var app = 'app';
-var dist = 'dist';
 
 gulp.task('serve', ['styles','vendorStyles','modernizr','mainjs','vendorjs'], function () {
   browserSync({
@@ -23,10 +21,10 @@ gulp.task('serve', ['styles','vendorStyles','modernizr','mainjs','vendorjs'], fu
 
   // watch for changes
   gulp.watch([
-    app+'/*.html',
-    app+'/js/**/*.js',
-    app+'/images/**/*',
+    config.app+'/*.html',
+    config.app+'/js/**/*.js',
+    config.app+'/images/**/*',
   ]).on('change', reload);
-  gulp.watch(app+'/**/*.scss', ['styles','vendorStyles']);
-  gulp.watch(app+'/scripts/**/*.js', ['mainjs']);
+  gulp.watch(config.app+'/**/*.scss', ['styles','vendorStyles']);
+  gulp.watch(config.app+'/scripts/**/*.js', ['mainjs']);
 });

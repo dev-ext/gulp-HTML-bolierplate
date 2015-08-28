@@ -54,7 +54,8 @@ gulp.task('vendorjs:b', function(){
 
 // modernizr
 gulp.task('headjs', function(){
-  return gulp.src(config.headjs)   
+  return gulp.src(config.headjs)  
+    .pipe(concat('headscripts.js'))  
     .pipe(uglify())
     .pipe(gulp.dest(config.app+'/js/vendor/'))
 });

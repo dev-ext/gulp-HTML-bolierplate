@@ -4,6 +4,7 @@ var config = require('./config.json');
 // Gulp Clean
 gulp.task('clean', function(){
   del([
+  	config.package,
     config.dist+'/',
     config.app+'/js',
     config.app+'/style.css',

@@ -21,7 +21,7 @@ gulp.task('htmlcopy:b',function(){
 
 gulp.task('extras', function () {
   return gulp.src([
-    'app/*.*',
+    config.app+'/*.*',
     '!'+config.app+'/*.html',
     '!'+config.app+'/*.scss'
   ], {
