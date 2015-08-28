@@ -3,6 +3,7 @@ var gulp = require('gulp');
 var runSequence = require('run-sequence');
 var rename = require('gulp-rename');
 var del = require('del');
+var zip = require('gulp-zip');
 var config = require('./config.json');
 
 
@@ -33,16 +34,15 @@ gulp.task('cp:server:clean', function(){
     ])
 });
 
-gulp.task('cp:server', function() {
-  runSequence(
-  					'build',
-  					'cp:server:dist',
-  					'cp:server:style',
-  					'cp:server:vendorstyle',
-  					'cp:server:clean'
-  					);
-});
 
+// Create Zip 
+gulp.task('cp:zip', function () {
+    return gulp.src([config.package+'/**/*.*',
+        '!'+config.package+'/'+config.server+'/**/*.*'
+        ])
+        .pipe(zip(config.package+'.zip'))
+        .pipe(gulp.dest(''));
+});
 // Create Dev Stack
 gulp.task('cp:stack:dist',function(){
  return gulp.src(['**/*.*',
@@ -58,18 +58,19 @@ gulp.task('cp:stack:dist',function(){
 // Create HTMl Dist
 gulp.task('cp:client:dist',function(){
  return gulp.src([config.dist+'/**/*.*'])
- .pipe(gulp.dest(config.package+'/'+config.html+'/'));
-});
-gulp.task('cp:client', function() {
-  runSequence(
-            'htmlcopy',
-            'cp:client:dist'
-            );
+ .pipe(gulp.dest(config.package+'/'+config.client+'/'));
 });
 
 gulp.task('cp', function() {
   runSequence(
-            ['cp:server'],
-            ['cp:stack:dist']
+            // Build
+            ['styles:b','vendorStyles:b','mainjs:b', 'headjs:b','vendorjs:b','images','extras','htmlcopy:b'],
+            // server upload for demo
+            ['cp:server:dist','cp:server:style','cp:server:vendorstyle','cp:server:clean'],
+            //developer stack distribution
+            ['cp:stack:dist'],
+            // build file distribution 
+            ['htmlcopy'],
+            ['cp:client:dist']
             );
 });

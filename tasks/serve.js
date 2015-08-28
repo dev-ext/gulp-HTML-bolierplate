@@ -6,7 +6,7 @@ var reload = browserSync.reload;
 var config = require('./config.json');
 
 
-gulp.task('serve', ['styles','vendorStyles','modernizr','mainjs','vendorjs'], function () {
+gulp.task('serve', ['styles','vendorStyles','headjs','mainjs','vendorjs'], function () {
   browserSync({
     notify: false,
     port: 9000,

@@ -8,7 +8,7 @@ var requireDir = require('require-dir');
 var tasks = requireDir('tasks/');
 
 
-gulp.task('build',['styles:b','vendorStyles:b','mainjs:b', 'modernizr:b',
+gulp.task('build',['styles:b','vendorStyles:b','mainjs:b', 'headjs:b',
   'vendorjs:b','images','extras','htmlcopy:b'],function(){
   return gulp.src(config.dist+'/**/*').pipe($.size({title: 'build', gzip: true}));
 });
