@@ -1,8 +1,9 @@
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
+var config = require('./config.json');
 
 gulp.task('images', function () {
-  return gulp.src('app/images/**/*')
+  return gulp.src(config.app+'/images/**/*')
     .pipe($.cache($.imagemin({
       progressive: true,
       interlaced: true,
@@ -10,5 +11,5 @@ gulp.task('images', function () {
       // as hooks for embedding and styling
       svgoPlugins: [{cleanupIDs: false}]
     })))
-    .pipe(gulp.dest('dist/images'));
+    .pipe(gulp.dest(config.dist+'/images'));
 });

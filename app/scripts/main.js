@@ -1,2 +1,1 @@
-'strict';
-console.log('alo alo');
+'use strict';
