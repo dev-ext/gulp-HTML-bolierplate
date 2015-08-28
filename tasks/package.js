@@ -1,7 +1,9 @@
 // Create config.package 
 var gulp = require('gulp');
 var runSequence = require('run-sequence');
+var concat = require('gulp-concat');
 var rename = require('gulp-rename');
+var uglify = require('gulp-uglify');
 var del = require('del');
 var zip = require('gulp-zip');
 var config = require('./config.json');
@@ -27,10 +29,25 @@ gulp.task('cp:server:vendorstyle',function(){
  .pipe(gulp.dest(config.package+'/'+config.server+'/'));
 });
 
+gulp.task('cp:server:mainjs',function(){
+ return gulp.src(config.package+'/'+config.server+'/js/main.min.js')
+ .pipe(concat('main.js')) 
+ .pipe(uglify())
+ .pipe(gulp.dest(config.package+'/'+config.server+'/js/'));
+});
+gulp.task('cp:server:vendorjs',function(){
+ return gulp.src(config.package+'/'+config.server+'/js/vendor/vendor.min.js')
+ .pipe(concat('vendor.js')) 
+ .pipe(uglify())
+ .pipe(gulp.dest(config.package+'/'+config.server+'/js/vendor/'));
+});
+
 gulp.task('cp:server:clean', function(){
   del([
     config.package+'/'+config.server+'/style.min.css',
-    config.package+'/'+config.server+'/vendor.min.css'
+    config.package+'/'+config.server+'/vendor.min.css',
+    config.package+'/'+config.server+'/js/main.min.js',
+    config.package+'/'+config.server+'/js/vendor/vendor.min.js'
     ])
 });
 
@@ -51,6 +68,7 @@ gulp.task('cp:stack:dist',function(){
     '!'+config.app+'/images/**/*.*',    
     '!'+config.package+'/**/*.*',
     '!'+config.dist+'/**/*.*',
+    '!'+config.package+'.zip',
     '!.git/**/*.*'])
  .pipe(gulp.dest(config.package+'/'+config.stack+'/'));
 });
@@ -66,11 +84,15 @@ gulp.task('cp', function() {
             // Build
             ['styles:b','vendorStyles:b','mainjs:b', 'headjs:b','vendorjs:b','images','extras','htmlcopy:b'],
             // server upload for demo
-            ['cp:server:dist','cp:server:style','cp:server:vendorstyle','cp:server:clean'],
+            ['cp:server:dist'],
+            ['cp:server:style','cp:server:vendorstyle','cp:server:mainjs','cp:server:vendorjs'],
+            'cp:server:clean',
             //developer stack distribution
             ['cp:stack:dist'],
             // build file distribution 
             ['htmlcopy'],
-            ['cp:client:dist']
+            ['cp:client:dist'],
+            // create Zip
+            'cp:zip'
             );
 });

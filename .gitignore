@@ -11,6 +11,7 @@ app/style.css
 app/vendor.css
 app/js/
 main/
+*.zip
 
 # Windows image file caches
 Thumbs.db
