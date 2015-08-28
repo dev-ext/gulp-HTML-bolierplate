@@ -11,7 +11,7 @@ gulp.task('serve', ['styles','vendorStyles','headjs','mainjs','vendorjs'], funct
     notify: false,
     port: 9000,
      server: {
-      baseDir: [app],      
+      baseDir: [config.app],      
       routes: {
         '/bower_components': 'bower_components'
       },
