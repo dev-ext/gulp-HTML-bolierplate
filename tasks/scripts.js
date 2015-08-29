@@ -9,7 +9,7 @@ var config = require('./config.json');
 
 // Lint JS
 gulp.task('lint', function() {
-  return gulp.src(config.scripts+'main.js')
+  return gulp.src(config.mainjs)
     .pipe(jshint())
     .pipe(jshint.reporter("jshint-stylish"))
     .pipe(jshint.reporter('default'));
@@ -21,7 +21,7 @@ gulp.task('mainjs', function(){
     .pipe(jshint())
     .pipe(jshint.reporter("jshint-stylish"))
     .pipe(concat('main.js'))    
-    .pipe(gulp.dest(config.d_compile_js))
+    .pipe(gulp.dest(config.compile_js))
 });
 gulp.task('mainjs:b', function(){
   return gulp.src(config.mainjs)
@@ -39,7 +39,7 @@ gulp.task('vendorjs', function(){
   return gulp.src(config.vendor_js)
     .pipe(jshint())
     .pipe(concat('vendor.js'))    
-    .pipe(gulp.dest(config.d_compile_js_vendor))
+    .pipe(gulp.dest(config.compile_js_vendor))
 });
 
 gulp.task('vendorjs:b', function(){
@@ -57,7 +57,7 @@ gulp.task('headjs', function(){
   return gulp.src(config.headjs)  
     .pipe(concat('headscripts.js'))  
     .pipe(uglify())
-    .pipe(gulp.dest(config.d_compile_js_vendor))
+    .pipe(gulp.dest(config.compile_js_vendor))
 });
 
 gulp.task('headjs:b', function(){

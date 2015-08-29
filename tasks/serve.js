@@ -28,3 +28,14 @@ gulp.task('serve', ['styles','vendorStyles','headjs','mainjs','vendorjs'], funct
   gulp.watch(config.app+'/**/*.scss', ['styles','vendorStyles']);
   gulp.watch(config.scripts+'**/*.js', ['mainjs']);
 });
+
+gulp.task('serve:dist',function  () {
+  browserSync({
+    notify: false,
+    port: 9001,
+     server: {
+      baseDir: [config.dist]
+    },
+    open: "external",
+  });
+});
