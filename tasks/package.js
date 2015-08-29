@@ -30,7 +30,8 @@ gulp.task('cp:server:vendorstyle',function(){
 });
 
 gulp.task('cp:server:mainjs',function(){
- return gulp.src(config.p_server_js+'main.min.js')
+ return gulp.src([config.p_server_js+'main.min.js',
+    'bower_components/analytic.js'])
  .pipe(concat('main.js')) 
  .pipe(uglify())
  .pipe(gulp.dest(config.p_server_js));
