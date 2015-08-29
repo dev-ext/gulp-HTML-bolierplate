@@ -39,3 +39,27 @@ gulp.task('serve:dist',function  () {
     open: "external",
   });
 });
+
+gulp.task('serve:server',function  () {
+  browserSync({
+    notify: false,
+    port: 9002,
+     server: {
+      baseDir: [config.p_server]
+    },
+    open: "external",
+  });
+});
+
+gulp.task('serve:client',function  () {
+  browserSync({
+    notify: false,
+    port: 9003,
+     server: {
+      baseDir: [config.p_client]
+    },
+    open: "external",
+  });
+});
+
+
