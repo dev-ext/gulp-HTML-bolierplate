@@ -19,6 +19,16 @@ gulp.task('htmlcopy:b',function(){
  .pipe(gulp.dest(config.dist));
 });
 
+gulp.task('bowerfont',function(){
+ return gulp.src(config.bowerfont)
+ .pipe(gulp.dest(config.fontpath))
+});
+
+gulp.task('bowerfont:b',function(){
+ return gulp.src(config.bowerfont)
+ .pipe(gulp.dest(config.d_fontpath))
+});
+
 gulp.task('extras', function () {
   return gulp.src([
     config.app+'/*.*',

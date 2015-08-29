@@ -7,12 +7,14 @@
     "compile_js" :"app/js/",
     "compile_js_vendor" :"app/js/vendor/",
     "scripts" :"app/scripts/",
+    "bowerfont":["bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*.*"],
+    "fontpath" :"app/fonts/",
     "scss":"",
    
     "d_images":"dist/images/",
     "d_compile_js" :"dist/js/",
     "d_compile_js_vendor" :"dist/js/vendor/",
-    
+    "d_fontpath" :"dist/fonts/",
    
 
     "package": "main",

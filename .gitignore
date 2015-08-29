@@ -10,6 +10,7 @@ test/
 app/style.css
 app/vendor.css
 app/js/
+app/fonts/
 main/
 *.zip
 

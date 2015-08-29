@@ -9,7 +9,7 @@ var tasks = requireDir('tasks/');
 
 
 gulp.task('build',['styles:b','vendorStyles:b','mainjs:b', 'headjs:b',
-  'vendorjs:b','images','extras','htmlcopy:b'],function(){
+  'vendorjs:b','images','extras','htmlcopy:b','bowerfont'],function(){
   return gulp.src(config.dist+'/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
