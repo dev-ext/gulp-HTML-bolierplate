@@ -22,9 +22,9 @@ gulp.task('serve', ['styles','vendorStyles','headjs','mainjs','vendorjs'], funct
   // watch for changes
   gulp.watch([
     config.app+'/*.html',
-    config.app+'/js/**/*.js',
-    config.app+'/images/**/*',
+    config.compile_js+'**/*.js',
+    config.images+'**/*',
   ]).on('change', reload);
   gulp.watch(config.app+'/**/*.scss', ['styles','vendorStyles']);
-  gulp.watch(config.app+'/scripts/**/*.js', ['mainjs']);
+  gulp.watch(config.scripts+'**/*.js', ['mainjs']);
 });

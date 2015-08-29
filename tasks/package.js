@@ -14,40 +14,40 @@ var config = require('./config.json');
 
 gulp.task('cp:server:dist',function(){
  return gulp.src([config.dist+'/**/*.*'])
- .pipe(gulp.dest(config.package+'/'+config.server+'/'));
+ .pipe(gulp.dest(config.p_server));
 });
 
 gulp.task('cp:server:style',function(){
- return gulp.src(config.package+'/'+config.server+'/style.min.css')
+ return gulp.src(config.p_server+'style.min.css')
  .pipe(rename('style.css'))
- .pipe(gulp.dest(config.package+'/'+config.server+'/'));
+ .pipe(gulp.dest(config.p_server));
 });
 
 gulp.task('cp:server:vendorstyle',function(){
- return gulp.src(config.package+'/'+config.server+'/vendor.min.css')
+ return gulp.src(config.p_server+'vendor.min.css')
  .pipe(rename('vendor.css'))
- .pipe(gulp.dest(config.package+'/'+config.server+'/'));
+ .pipe(gulp.dest(config.p_server));
 });
 
 gulp.task('cp:server:mainjs',function(){
- return gulp.src(config.package+'/'+config.server+'/js/main.min.js')
+ return gulp.src(config.p_server_js+'main.min.js')
  .pipe(concat('main.js')) 
  .pipe(uglify())
- .pipe(gulp.dest(config.package+'/'+config.server+'/js/'));
+ .pipe(gulp.dest(config.p_server_js));
 });
 gulp.task('cp:server:vendorjs',function(){
- return gulp.src(config.package+'/'+config.server+'/js/vendor/vendor.min.js')
+ return gulp.src(config.p_server_js_vendor+'vendor.min.js')
  .pipe(concat('vendor.js')) 
  .pipe(uglify())
- .pipe(gulp.dest(config.package+'/'+config.server+'/js/vendor/'));
+ .pipe(gulp.dest(config.p_server_js_vendor));
 });
 
 gulp.task('cp:server:clean', function(){
   del([
-    config.package+'/'+config.server+'/style.min.css',
-    config.package+'/'+config.server+'/vendor.min.css',
-    config.package+'/'+config.server+'/js/main.min.js',
-    config.package+'/'+config.server+'/js/vendor/vendor.min.js'
+    config.p_server+'style.min.css',
+    config.p_server+'vendor.min.css',
+    config.p_server_js+'main.min.js',
+    config.p_server_js_vendor+'vendor.min.js'
     ])
 });
 
@@ -55,7 +55,7 @@ gulp.task('cp:server:clean', function(){
 // Create Zip 
 gulp.task('cp:zip', function () {
     return gulp.src([config.package+'/**/*.*',
-        '!'+config.package+'/'+config.server+'/**/*.*'
+        '!'+config.p_server+'/**/*.*'
         ])
         .pipe(zip(config.package+'.zip'))
         .pipe(gulp.dest(''));
@@ -65,33 +65,33 @@ gulp.task('cp:stack:dist',function(){
  return gulp.src(['**/*.*',
     '!bower_components/**/*.*',
     '!node_modules/**/*.*',
-    '!'+config.app+'/images/**/*.*',
-    '!'+config.app+'/image-placeholders/**/*.*',
+    '!'+config.images+'**/*.*',
+    '!'+config.image_placeholder+'**/*.*',
     '!tasks/package.js',       
     '!'+config.package+'/**/*.*',
     '!'+config.dist+'/**/*.*',
     '!'+config.package+'.zip',
     '!.git/**/*.*'])
- .pipe(gulp.dest(config.package+'/'+config.stack+'/'));
+ .pipe(gulp.dest(config.p_stack));
 });
 
 // Create HTMl Dist
 gulp.task('cp:client:dist',function(){
  return gulp.src([
         config.dist+'/**/*.*',
-        '!'+config.dist+'/images/**/*.*'
+        '!'+config.d_images+'**/*.*'
         ])
- .pipe(gulp.dest(config.package+'/'+config.client+'/'));
+ .pipe(gulp.dest(config.p_client));
 });
 
 // Plceholders
 gulp.task('cp:client:img', function(){
-   return gulp.src([config.app+'/image-placeholders/**/*.*'])
-   .pipe(gulp.dest(config.package+'/'+config.client+'/images/'));
+   return gulp.src([config.image_placeholder+'**/*.*'])
+   .pipe(gulp.dest(config.p_h_images));
 });
 gulp.task('cp:stack:img', function(){
-   return gulp.src([config.app+'/image-placeholders/**/*.*'])
-   .pipe(gulp.dest(config.package+'/'+config.stack+'/'+config.app+'/images/'));
+   return gulp.src([config.image_placeholder+'**/*.*'])
+   .pipe(gulp.dest(config.p_st_images));
 });
 
 
