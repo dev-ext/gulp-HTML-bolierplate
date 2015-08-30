@@ -1,10 +1,16 @@
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var minifyHTML = require('gulp-minify-html');
+var fileinclude = require('gulp-file-include');
 var config = require('./config.json');
+
 // HTML and  others Copy
 gulp.task('htmlcopy',function(){
  return gulp.src([config.app+'/*.html'])
+ .pipe(fileinclude({
+      prefix: '@',
+      basepath: ''
+    }))
  .pipe(gulp.dest(config.dist));
 });
 
@@ -15,6 +21,10 @@ gulp.task('htmlcopy:b',function(){
     empty :true
   };
  return gulp.src([config.app+'/*.html'])
+ .pipe(fileinclude({
+      prefix: '@',
+      basepath: ''
+    }))
  .pipe(minifyHTML(opts)) 
  .pipe(gulp.dest(config.dist));
 });

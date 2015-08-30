@@ -3,6 +3,7 @@ var gulp = require('gulp');
 var browserSync = require('browser-sync');
 var $ = require('gulp-load-plugins')();
 var reload = browserSync.reload;
+var fs = require('fs');
 var config = require('./config.json');
 
 
@@ -16,6 +17,19 @@ gulp.task('serve', ['styles','vendorStyles','headjs','mainjs','vendorjs','bowerf
         '/bower_components': 'bower_components'
       },
     },
+    files: ['app/*.html'],
+    rewriteRules: [
+        {
+            match: /@include\("(.+?)"\)/g,
+            fn: function (match, filename) {
+                if (fs.existsSync(filename)) {
+                    return fs.readFileSync(filename);
+                } else {
+                    return '<span style="color: red">'+filename+' could not be found</span>';
+                }
+            }
+        }
+    ],
     open: "external",
   });
 
