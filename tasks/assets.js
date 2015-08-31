@@ -43,6 +43,7 @@ gulp.task('extras', function () {
   return gulp.src([
     config.app+'/*.*',
     '!'+config.app+'/*.html',
+    '!'+config.app+'/*.tpl',
     '!'+config.app+'/*.scss'
   ], {
     dot: true

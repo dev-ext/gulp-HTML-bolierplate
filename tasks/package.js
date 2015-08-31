@@ -105,11 +105,13 @@ gulp.task('cp:doc',function(){
 gulp.task('cp', function() {
   runSequence(
             // Build
-            ['styles:b','vendorStyles:b','mainjs:b', 'headjs:b','vendorjs:b','images','extras','htmlcopy:b'],
+            ['styles:b','vendorStyles:b','mainjs:b', 'headjs:b',
+            'vendorjs:b','images','extras','htmlcopy:b'],
             // server upload for demo
             ['cp:server:dist'],
-            ['cp:server:style','cp:server:vendorstyle','cp:server:mainjs','cp:server:vendorjs'],
-            'cp:server:clean',
+            ['cp:server:style','cp:server:vendorstyle'],
+            ['cp:server:mainjs','cp:server:vendorjs'],
+            ['cp:server:clean'],
             //developer stack distribution
             ['cp:stack:dist'],
             'cp:stack:img',
