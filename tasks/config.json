@@ -1,6 +1,7 @@
 {
     "dist": "dist",
     "app": "app",
+    "doc":"documentation/**/*.*",
     
     "image_placeholder":"app/image-placeholders/",
     "images":"app/images/",
@@ -40,6 +41,9 @@
     "p_h_images":"main/html/images/",
     "p_h_compile_js" :"",
     "p_h_compile_js_vendor" :"",
+
+
+    "p_doc":"main/documentation/",
 
     
     "headjs": "bower_components/modernizr/modernizr.js",

@@ -72,7 +72,8 @@ gulp.task('cp:stack:dist',function(){
     '!'+config.package+'/**/*.*',
     '!'+config.dist+'/**/*.*',
     '!'+config.package+'.zip',
-    '!.git/**/*.*'])
+    '!.git/**/*.*',
+    '!'+config.doc])
  .pipe(gulp.dest(config.p_stack));
 });
 
@@ -95,7 +96,11 @@ gulp.task('cp:stack:img', function(){
    .pipe(gulp.dest(config.p_st_images));
 });
 
-
+// Documentation
+gulp.task('cp:doc',function(){
+    return gulp.src(config.doc)
+    .pipe(gulp.dest(config.p_doc))
+});
 
 gulp.task('cp', function() {
   runSequence(
