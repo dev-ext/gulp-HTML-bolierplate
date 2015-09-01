@@ -14,6 +14,7 @@ Install git
  2. Run `gulp build`. This will generate production version into 'dist' folder with optimized version.
  3.  After build `gulp serve:server` This will serve build server version.
  4.  After build `gulp serve:client` This will serve build client version.
- 
+## Build task Package ##
+
 ## config ## 
 1. Config task variable, variables located at task/config.json
