@@ -1,6 +1,6 @@
 ## Pre installed dependencies ##
 Install Node : https://nodejs.org/
-Install Bower: `npm install --global bower`
+Install Bower: `npm install --global bower` and `npm install --global gulp`
 Install git
 
 ## Getting strated ##
