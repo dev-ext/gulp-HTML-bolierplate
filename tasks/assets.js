@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var minifyHTML = require('gulp-minify-html');
 var fileinclude = require('gulp-file-include');
+var htmlreplace = require('gulp-html-replace');
 var config = require('./config.json');
 
 // HTML and  others Copy
@@ -24,6 +25,12 @@ gulp.task('htmlcopy:b',function(){
  .pipe(fileinclude({
       prefix: '@',
       basepath: ''
+    }))
+ .pipe(htmlreplace({
+        'css': 'styles.min.css',
+        'vendorcss':'vendor.min.css',
+        'js': 'js/main.min.js',
+        'vendorjs': 'js/vendor.min.js'
     }))
  .pipe(minifyHTML(opts)) 
  .pipe(gulp.dest(config.dist));
