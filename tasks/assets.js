@@ -27,10 +27,10 @@ gulp.task('htmlcopy:b',function(){
       basepath: ''
     }))
  .pipe(htmlreplace({
-        'css': 'styles.min.css',
+        'css': 'style.min.css',
         'vendorcss':'vendor.min.css',
-        'js': 'js/main.min.js',
-        'vendorjs': 'js/vendor.min.js'
+        'js': config.u_mainjs,
+        'vendorjs': config.u_vendorjs
     }))
  .pipe(minifyHTML(opts)) 
  .pipe(gulp.dest(config.dist));

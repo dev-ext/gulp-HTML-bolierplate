@@ -53,5 +53,8 @@
     ],
     "mainjs": "app/scripts/main.js",
     "styles_scss":"app/style.scss",
-    "vendor_scss":"app/vendor.scss"
+    "vendor_scss":"app/vendor.scss",
+
+    "u_mainjs" : "js/main.min.js",
+    "u_vendorjs" : "js/vendor/vendor.min.js"
 }
