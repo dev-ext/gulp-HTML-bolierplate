@@ -8,8 +8,6 @@ var del = require('del');
 var zip = require('gulp-zip');
 var config = require('./config.json');
 
-
-
 // Create Server
 
 gulp.task('cp:server:dist',function(){
@@ -17,38 +15,20 @@ gulp.task('cp:server:dist',function(){
  .pipe(gulp.dest(config.p_server));
 });
 
-gulp.task('cp:server:style',function(){
- return gulp.src(config.p_server+'style.min.css')
- .pipe(rename('style.css'))
- .pipe(gulp.dest(config.p_server));
-});
-
-gulp.task('cp:server:vendorstyle',function(){
- return gulp.src(config.p_server+'vendor.min.css')
- .pipe(rename('vendor.css'))
- .pipe(gulp.dest(config.p_server));
-});
-
 gulp.task('cp:server:mainjs',function(){
  return gulp.src([config.p_server_js+'main.min.js',
     'bower_components/analytic.js'])
- .pipe(concat('main.js')) 
+ .pipe(concat('main.min.js')) 
  .pipe(uglify())
  .pipe(gulp.dest(config.p_server_js));
-});
-gulp.task('cp:server:vendorjs',function(){
- return gulp.src(config.p_server_js_vendor+'vendor.min.js')
- .pipe(concat('vendor.js')) 
- .pipe(uglify())
- .pipe(gulp.dest(config.p_server_js_vendor));
 });
 
 gulp.task('cp:server:clean', function(){
   del([
-    config.p_server+'style.min.css',
-    config.p_server+'vendor.min.css',
-    config.p_server_js+'main.min.js',
-    config.p_server_js_vendor+'vendor.min.js'
+    config.p_server+'style.css',
+    config.p_server+'vendor.css',
+    config.p_server_js+'main.js',
+    config.p_server_js_vendor+'vendor.js'
     ])
 });
 
@@ -109,8 +89,7 @@ gulp.task('cp', function() {
             'vendorjs:b','images','extras','htmlcopy:b'],
             // server upload for demo
             ['cp:server:dist'],
-            ['cp:server:style','cp:server:vendorstyle'],
-            ['cp:server:mainjs','cp:server:vendorjs'],
+            ['cp:server:mainjs'],
             ['cp:server:clean'],
             //developer stack distribution
             ['cp:stack:dist'],
@@ -119,6 +98,8 @@ gulp.task('cp', function() {
             ['htmlcopy'],
             ['cp:client:dist'],
             'cp:client:img',
+            // doc
+            'cp:doc',
             // create Zip
             'cp:zip'
             );
