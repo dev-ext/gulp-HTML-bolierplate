@@ -36,6 +36,7 @@ gulp.task('serve', ['styles','vendorStyles','headjs','mainjs','vendorjs','bowerf
   // watch for changes
   gulp.watch([
     config.app+'/*.html',
+    config.app+'**/*.css',
     config.compile_js+'**/*.js',
     config.images+'**/*',
   ]).on('change', reload);
