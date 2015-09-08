@@ -20,7 +20,7 @@ gulp.task('styles', function () {
       require('autoprefixer-core')({browsers: ['last 2 version']})
     ]))
     .pipe($.sourcemaps.write())
-    .pipe(gulp.dest(config.app+'/'))
+    .pipe(gulp.dest(config.compile_styles))
 });
 
 gulp.task('styles:b', function () {
@@ -34,10 +34,10 @@ gulp.task('styles:b', function () {
     .pipe($.postcss([
       require('autoprefixer-core')({browsers: ['last 2 version']})
     ]))
-    .pipe(gulp.dest(config.dist+'/'))  
+    .pipe(gulp.dest(config.d_styles))  
     .pipe(csso())    
     .pipe(rename('style.min.css'))
-    .pipe(gulp.dest(config.dist+'/')); 
+    .pipe(gulp.dest(config.d_styles)); 
 });
 
 // Vendor Style
@@ -54,7 +54,7 @@ gulp.task('vendorStyles', function () {
       require('autoprefixer-core')({browsers: ['last 2 version']})
     ]))
     .pipe($.sourcemaps.write())
-    .pipe(gulp.dest(config.app+'/'))
+    .pipe(gulp.dest(config.compile_Vstyles))
 });
 
 gulp.task('vendorStyles:b', function () {
@@ -68,9 +68,9 @@ gulp.task('vendorStyles:b', function () {
     .pipe($.postcss([
       require('autoprefixer-core')({browsers: ['last 2 version']})
     ]))
-    .pipe(gulp.dest(config.dist+'/'))  
+    .pipe(gulp.dest(config.d_Vstyles))  
     .pipe(csso())    
     .pipe(rename('vendor.min.css'))
-    .pipe(gulp.dest(config.dist+'/')); 
+    .pipe(gulp.dest(config.d_Vstyles)); 
 });
 

@@ -10,12 +10,15 @@
     "scripts" :"app/scripts/",
     "bowerfont":["bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*.*"],
     "fontpath" :"app/fonts/",
-    "scss":"",
+    "compile_styles":"app/",
+    "compile_Vstyles":"app/",
    
     "d_images":"dist/images/",
     "d_compile_js" :"dist/js/",
     "d_compile_js_vendor" :"dist/js/vendor/",
     "d_fontpath" :"dist/fonts/",
+    "d_styles":"dist/",
+    "d_Vstyles":"dist/",
    
 
     "package": "main",
