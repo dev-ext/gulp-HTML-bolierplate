@@ -8,7 +8,8 @@ var config = require('./config.json');
 
 // Style
 gulp.task('styles', function () {
-  gulp.src(config.styles_scss)    
+  gulp.src(config.styles_scss)
+    .pipe($.plumber())    
     .pipe($.sourcemaps.init())
     .pipe($.sass({
       outputStyle: 'nested', // libsass doesn't support expanded yet
@@ -24,7 +25,8 @@ gulp.task('styles', function () {
 });
 
 gulp.task('styles:b', function () {
-  gulp.src(config.styles_scss)    
+  gulp.src(config.styles_scss)   
+    .pipe($.plumber()) 
     .pipe($.sass({
       outputStyle: 'nested', // libsass doesn't support expanded yet
       precision: 10,
@@ -42,7 +44,8 @@ gulp.task('styles:b', function () {
 
 // Vendor Style
 gulp.task('vendorStyles', function () {
-  gulp.src(config.vendor_scss)    
+  gulp.src(config.vendor_scss)
+    .pipe($.plumber())    
     .pipe($.sourcemaps.init())
     .pipe($.sass({
       outputStyle: 'nested', // libsass doesn't support expanded yet
@@ -58,7 +61,8 @@ gulp.task('vendorStyles', function () {
 });
 
 gulp.task('vendorStyles:b', function () {
-  gulp.src(config.vendor_scss)    
+  gulp.src(config.vendor_scss) 
+    .pipe($.plumber())   
     .pipe($.sass({
       outputStyle: 'nested', // libsass doesn't support expanded yet
       precision: 10,
